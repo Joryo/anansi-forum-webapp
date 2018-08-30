@@ -1,0 +1,132 @@
+import React from 'react'
+import Gravatar from 'react-gravatar'
+import PostStyle from '../styles/post.js'
+import {
+    Card,
+    CardBody,
+    CardTitle,
+    CardText,
+    CardFooter,
+    ListGroup,
+    ListGroupItem,
+    Media,
+    ButtonGroup,
+    Button,
+    CardHeader,
+    Badge,
+    Form,
+    Input,
+    Label,
+    FormGroup
+} from 'reactstrap';
+import Trash from 'react-icons/lib/io/trash-b';
+import Edit from 'react-icons/lib/io/edit';
+
+// Display simple post with his comments
+const Post = ({
+    status,
+    post,
+    author,
+    comments,
+    me,
+    onDeleteClick,
+    onUpdateClick,
+    values,
+    errors,
+    handleSubmit,
+    handleBlur,
+    handleChange }) => (
+    <div>
+        {post &&
+        <div style={PostStyle.post}>
+            <Card>
+                <CardBody>
+                    <CardTitle>{post.attributes.title}</CardTitle>
+                    <hr/>
+                    <CardText>{post.attributes.text}</CardText>
+                </CardBody>
+                <CardFooter>
+                    <Gravatar email={author.attributes.email} size={30}/>&nbsp;{author.attributes.pseudo}
+                    <ButtonGroup style={PostStyle.actions}>
+                        <Button onClick={onDeleteClick}><Trash/></Button>
+                        <Button onClick={onUpdateClick}><Edit/></Button>
+                    </ButtonGroup>
+                </CardFooter>
+            </Card>
+        </div>
+        }
+        {comments &&
+        <div>
+            <div style={PostStyle.commentsHeader}>
+                {comments.length > 0 &&
+                    <h5 color="secondary">
+                        {comments.length} commentaire
+                        {comments.length > 1 &&
+                            <span>s</span>
+                        }
+                    </h5>
+                }
+                {comments.length == 0 &&
+                    <h5 color="secondary">
+                        Aucun commentaire
+                    </h5>
+                }
+            </div>
+            <hr/>
+            <ListGroup style={PostStyle.comments}>
+                {comments.map(comment =>
+                    <ListGroupItem
+                        key={comment.id}>
+<<<<<<< HEAD
+                            {comment.attributes.text} by {comment.author.attributes.pseudo}
+=======
+                        <Media>
+                            <Media left>
+                                <Gravatar email={comment.author.attributes.email} size={25}/>
+                            </Media>
+                            <Media body>
+                                <Media heading>
+                                     &nbsp;{comment.author.attributes.pseudo}
+                                </Media>
+                                <p>
+                                    {comment.attributes.text}
+                                </p>
+                            </Media>
+                        </Media>
+>>>>>>> 8f588b6... Ajout formulaire commentaire
+                    </ListGroupItem>
+                )}
+            </ListGroup>
+        </div>
+        }
+        <div style={PostStyle.commentForm}>
+            <Form onSubmit={handleSubmit}>
+                <Card>
+                    <CardHeader>
+                        <b>Ecrire un commentaire</b>
+                    </CardHeader>
+                    <CardBody>
+                        <CardText>
+                            <Input
+                                type="textarea"
+                                id="text"
+                                value={values.text}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            />
+                            {errors.text &&
+                                <p>{errors.text}</p>
+                            }
+                        </CardText>
+                    </CardBody>
+                    <CardFooter>
+                        <Gravatar email={me.email} size={30}/>&nbsp;{me.pseudo}
+                        <Button style={PostStyle.sendComment}>Envoyer</Button>
+                    </CardFooter>
+                </Card>
+            </Form>
+        </div>
+    </div>
+)
+
+export default Post

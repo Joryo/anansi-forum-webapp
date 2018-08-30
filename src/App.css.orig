@@ -1,0 +1,17 @@
+<<<<<<< HEAD
+.Login {
+    text-align: center;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+    margin-top:50px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: auto;
+}
+
+.mainContent {
+     margin-top:30px;
+}
+=======
+>>>>>>> a9ae130... Ajout dossier styles pour css object
