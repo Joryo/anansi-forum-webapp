@@ -15,6 +15,7 @@ const apiEndpoints = {
     updateMember: { method: patch, path: '/members/:id' },
     deleteMember: { method: destroy, path: '/members/:id' },
     getTags : { method: get, path: '/tags' },
+    lostPassword : {method: post, path: '/lostpassword'},
 };
 
 // Api configuration

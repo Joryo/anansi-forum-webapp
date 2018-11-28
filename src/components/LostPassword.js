@@ -1,14 +1,12 @@
 import React from 'react'
 import { Button, Form, FormGroup, Label, Input, NavLink, FormFeedback } from 'reactstrap';
 import LoginStyle from '../styles/login.js'
-import Alert from '../containers/Alert.js'
 
 // Login component - Display a login page for unconnected user
-let Login = ({values, errors, handleSubmit, handleChange, handleBlur}) => (
+let LostPassword = ({values, errors, handleSubmit, handleChange, handleBlur}) => (
     <div>
         <div style={LoginStyle.form}>
             <img src='/big-logo-vertical.png' alt='AnansiForum' style={LoginStyle.logo}/>
-            <Alert />
             <Form onSubmit={handleSubmit}>
                 <FormGroup>
                     <Label for="_email" hidden>Email</Label>
@@ -25,23 +23,12 @@ let Login = ({values, errors, handleSubmit, handleChange, handleBlur}) => (
                         <FormFeedback>{errors.email}</FormFeedback>
                     }
                 </FormGroup>
-                <FormGroup>
-                    <Label for="_password" hidden>Password</Label>
-                    <Input
-                        type="password"
-                        id="password"
-                        placeholder="Mot de passe"
-                        value={values.password}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-                </FormGroup>
-                <Button>Se connecter</Button>
+                <Button>M'envoyer un email pour me reconnecter</Button>
             </Form>
         </div>
-        <NavLink href="/lostpassword" style={LoginStyle.createLink}>J'ai oublié mon mot de passe</NavLink>
+        <NavLink href="/" style={LoginStyle.createLink}>Je me souviens de mon mot de passe</NavLink>
         <NavLink href="/register" style={LoginStyle.createLink}>Créer un compte</NavLink>
     </div>
 )
 
-export default Login
+export default LostPassword

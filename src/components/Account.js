@@ -36,7 +36,7 @@ let accountForm = ({values, errors, handleSubmit, handleChange, handleBlur, onFo
                     }
                 </FormGroup>
                 <FormGroup>
-                    <Label for="_text">Nouveau mot de passe</Label>
+                    <Label for="_text">Changer le mot de passe</Label>
                     <Input
                         type="password"
                         id="newPassword"
@@ -47,21 +47,6 @@ let accountForm = ({values, errors, handleSubmit, handleChange, handleBlur, onFo
                     />
                     {errors.newPassword &&
                         <FormFeedback>{errors.newPassword}</FormFeedback>
-                    }
-                </FormGroup>
-                <hr/>
-                <FormGroup>
-                    <Label for="_text">Mot de passe actuel</Label>
-                    <Input
-                        type="password"
-                        id="password"
-                        value={values.password}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        invalid={errors.password ? true : false}
-                    />
-                    {errors.password &&
-                        <FormFeedback>{errors.password}</FormFeedback>
                     }
                 </FormGroup>
                 <Button color="primary" onClick={(e) => {onFormSend('update', values, handleSubmit, e)}}>

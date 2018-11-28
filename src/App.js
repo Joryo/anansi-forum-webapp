@@ -1,6 +1,8 @@
 import React from 'react';
 import Login from './containers/Login.js';
+import Autologin from './containers/Autologin.js';
 import Forum from './containers/Forum.js';
+import LostPassword from './containers/LostPassword.js';
 import './App.css';
 import './dist/css/bootstrap.min.css';
 import { connect } from 'react-redux'
@@ -20,6 +22,8 @@ const App = ({ dispatch, auth }) => {
         return (
             <Switch>
                 <Route exact path="/register" component={Register} />
+                <Route exact path="/lostpassword" component={LostPassword} />
+                <Route exact path="/autologin/:token" component={Autologin} />
                 <Route path="/" component={Login} />
             </Switch>
         );
