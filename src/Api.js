@@ -1,5 +1,6 @@
 import { buildApi, get, post, patch, destroy } from 'redux-bees';
 import store from './store.js';
+import { logout } from './actions/auth'
 
 // Api routes
 const apiEndpoints = {
@@ -31,6 +32,16 @@ const config = {
             return {
                 ...headers
             };
+        }
+    },
+    afterResolve({ status, headers, body }) {
+        return Promise.resolve({ status, headers, body })
+    },
+    afterReject({ status, headers, body }) {
+        if (status === 401) {
+            store.store.dispatch(logout())
+        } else {
+            return Promise.reject({ status, headers, body})
         }
     },
 };
