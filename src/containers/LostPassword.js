@@ -2,17 +2,16 @@ import { connect } from 'react-redux'
 import { withFormik } from 'formik'
 import { compose } from 'redux'
 import * as Yup from 'yup'
-import Login from '../components/Login.js'
-import { reloadToken } from '../actions/auth'
+import LostPassword from '../components/LostPassword.js'
+import { lostPassword} from '../actions/auth'
+import { alertMessage } from '../actions/alert'
 
-const loginFormik = {
-    mapPropsToValues: props => ({ email: '', password: '' }),
+const lostPasswordFormik = {
+    mapPropsToValues: props => ({ email: ''}),
     validationSchema: Yup.object().shape({
         email: Yup.string()
             .email('Adresse email invalide')
             .required('Un email est nécessaire'),
-        password: Yup.string()
-            .required('Un mot de passe est nécessaire'),
     }),
     handleSubmit: (
         values,
@@ -22,9 +21,10 @@ const loginFormik = {
           setErrors
         }
     ) => {
-        reloadToken(values.email, values.password, props.dispatch)
-        .then(token => {
-            props.token = token;
+        lostPassword(values.email, props.dispatch)
+        .then(() => {
+            props.history.push('/')
+            props.dispatch(alertMessage('success', "Un email vous a été envoyé"))
         })
         .catch(
             error => {
@@ -36,7 +36,7 @@ const loginFormik = {
 
 const enhance = compose(
     connect(),
-    withFormik(loginFormik),
+    withFormik(lostPasswordFormik),
 )
 
-export default enhance(Login)
+export default enhance(LostPassword)

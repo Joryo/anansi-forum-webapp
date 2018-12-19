@@ -4,7 +4,7 @@ import { compose } from 'redux'
 import * as Yup from 'yup'
 import Api from '../Api.js'
 import Account from '../components/Account.js'
-import { reloadToken, logout} from '../actions/auth'
+import { logout} from '../actions/auth'
 import { alertMessage } from '../actions/alert'
 
 const mapStateToProps = state => ({
@@ -47,17 +47,9 @@ const actions = {
             }
         )
         .then(result => {
-            // Reload the JWT token after update success
-            let password = typeof(values.newPassword) !== 'undefined' ? values.newPassword : values.password
-            reloadToken(formAttributes.email, password, props.dispatch)
-            .then(token => {
-                props.dispatch(alertMessage('success', 'Vos données ont bien été mise à jour'))
-                return token;
-            })
-            .catch(error => {
-                props.dispatch(logout())
-                throw new Error('Echec lors de la récupération des données')
-            })
+            // The token need to be reload. Send to login page
+            props.dispatch(logout())
+            props.dispatch(alertMessage('success', "Veuillez vous reconnecter pour valider les modifications."))
         }).catch(
             error => {
                 throw new Error('Echec lors de la mise à jour du compte')
@@ -93,8 +85,6 @@ const accountFormik = {
     validationSchema: Yup.object().shape({
         email: Yup.string()
             .email('Adresse email invalide'),
-        password: Yup.string()
-            .required('Votre mot de passe actuel est nécessaire pour effectuer des modifications'),
         newPassword: Yup.string(),
         pseudo: Yup.string()
             .required('Un pseudo est nécessaire'),
@@ -111,14 +101,8 @@ const accountFormik = {
         if(values.action === 'delete') {
             action = 'delete'
         }
-        // Check the actual password before trying to update the member
-        reloadToken(props.email, values.password, props.dispatch)
-        .then(token => {
-            return actions[action](props, values, setErrors)
-        })
-        .catch(error => {
-            props.dispatch(alertMessage('danger', "Mauvais mot de passe actuel"))
-        })
+
+        return actions[action](props, values, setErrors)
     }
 }
 

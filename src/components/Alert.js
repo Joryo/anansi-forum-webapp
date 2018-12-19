@@ -7,7 +7,7 @@ const Alert = ({ isVisible, type, message, onDismiss }) => {
     if (isVisible) {
         setTimeout(function(){
             onDismiss()
-        }, 2000);
+        }, 3000);
     }
     return (
         <div style={AlertStyle.alert}>

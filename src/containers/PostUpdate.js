@@ -30,7 +30,6 @@ const postWriteFormik = {
           setErrors
         }
     ) => {
-        console.log(values.tags)
         Api.updatePost(
             {
                 id: props.post.id,

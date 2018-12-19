@@ -1,6 +1,6 @@
 {
   "name": "anansi-forum-webapp",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "A react client for ANANSI FORUM",
   "author": "Joryo",
   "dependencies": {
@@ -45,5 +45,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:8080"
+  "proxy": "http://localhost:3001"
 }
