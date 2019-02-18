@@ -16,7 +16,7 @@ const LoginStyle = {
         textAlign: 'right',
     },
     logo: {
-        width:'300px',
+        width:'180px',
         marginBottom: '30px',
     },
 }

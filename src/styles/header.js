@@ -1,6 +1,6 @@
 const HeaderStyle = {
     logo : {
-        width: '180px',
+        width: '29px',
     },
     icon : {
         marginRight: '2px',

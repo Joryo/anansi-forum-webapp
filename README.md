@@ -1,4 +1,6 @@
-![anansi-forum-webapp](https://raw.githubusercontent.com/joryo/anansi-forum-webapp/master/public/big-logo-vertical.png)
+<p align="center">
+  <img width="250" src="https://raw.githubusercontent.com/joryo/anansi-forum-webapp/master/public/big-logo-vertical.png">
+</p>
 
 A web client for [Anansi Forum API](https://github.com/Joryo/anansi-forum-api), run on [React](https://reactjs.org/).
 
